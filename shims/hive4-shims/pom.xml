@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.amazonaws.glue</groupId>
@@ -9,11 +9,11 @@
         <relativePath>../</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>shims-common</artifactId>
+    <artifactId>hive4-shims</artifactId>
     <packaging>jar</packaging>
 
-    <name>ShimsCommon</name>
-    <description>Common shim interface</description>
+    <name>Hive3Shims</name>
+    <description>Shims for Hive-4.x compatibility</description>
 
     <dependencies>
         <dependency>
@@ -23,17 +23,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>${hadoop.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-metastore</artifactId>
-            <version>${hive4.version}</version>
-            <scope>provided</scope>
+            <groupId>com.amazonaws.glue</groupId>
+            <artifactId>shims-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
-
 </project>

@@ -106,7 +106,6 @@ import static com.amazonaws.glue.catalog.util.MetastoreClientUtils.validateGlueT
 import static com.amazonaws.glue.catalog.util.MetastoreClientUtils.validateTableObject;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-import static org.apache.hadoop.hive.metastore.HiveMetaStore.PUBLIC;
 import static org.apache.hadoop.hive.metastore.TableType.EXTERNAL_TABLE;
 import static org.apache.hadoop.hive.metastore.TableType.MANAGED_TABLE;
 
@@ -119,7 +118,7 @@ public class GlueMetastoreClientDelegate {
 
   private static final Logger logger = Logger.getLogger(GlueMetastoreClientDelegate.class);
 
-  private static final List<Role> implicitRoles = Lists.newArrayList(new Role(PUBLIC, 0, PUBLIC));
+  private static final List<Role> implicitRoles = Lists.newArrayList(new Role("public", 0, "public"));
   public static final int MILLISECOND_TO_SECOND_FACTOR = 1000;
   public static final Long NO_MAX = -1L;
   public static final String MATCH_ALL = ".*";
@@ -974,7 +973,7 @@ public class GlueMetastoreClientDelegate {
    * Taken from HiveMetaStore#deleteParentRecursive
    */
   private void deleteParentRecursive(Path parent, int depth, boolean mustPurge) throws IOException, MetaException {
-    if (depth > 0 && parent != null && wh.isWritable(parent) && wh.isEmpty(parent)) {
+    if (depth > 0 && parent != null && wh.isWritable(parent) && wh.isEmptyDir(parent)) {
       hiveShims.deleteDir(wh, parent, true, mustPurge);
       deleteParentRecursive(parent.getParent(), depth - 1, mustPurge);
     }
@@ -1050,7 +1049,7 @@ public class GlueMetastoreClientDelegate {
   public List<String> listRoleNames() throws TException {
     // return PUBLIC role as implicit role to prevent unnecessary failure,
     // even though Glue doesn't support Role API yet
-    return Lists.newArrayList(PUBLIC);
+    return Lists.newArrayList("public");
   }
 
   public org.apache.hadoop.hive.metastore.api.GetPrincipalsInRoleResponse getPrincipalsInRole(

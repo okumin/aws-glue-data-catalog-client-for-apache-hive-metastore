@@ -7,8 +7,9 @@
   <version>3.4.0-SNAPSHOT</version>
     <modules>
       <module>aws-glue-datacatalog-client-common</module>
-      <module>aws-glue-datacatalog-spark-client</module>
-      <module>aws-glue-datacatalog-hive3-client</module>
+      <!--<module>aws-glue-datacatalog-spark-client</module>-->
+      <!--<module>aws-glue-datacatalog-hive3-client</module>-->
+      <module>aws-glue-datacatalog-hive4-client</module>
       <module>shims</module>
     </modules>
     <packaging>pom</packaging>
@@ -20,7 +21,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <guava.version>28.2-jre</guava.version>
     <hive3.version>3.1.3</hive3.version>
-    <spark-hive.version>2.3.10-SNAPSHOT</spark-hive.version>
+    <hive4.version>4.0.1</hive4.version>
+    <spark-hive.version>2.3.10</spark-hive.version>
     <aws.sdk.version>1.12.31</aws.sdk.version>
     <junit.version>4.11</junit.version>
     <mockito.version>1.10.19</mockito.version>
